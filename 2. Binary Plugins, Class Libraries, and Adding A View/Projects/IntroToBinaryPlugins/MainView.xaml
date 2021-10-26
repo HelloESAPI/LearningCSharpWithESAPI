@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="IntroToBinaryPlugins.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IntroToBinaryPlugins"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+  <Border Margin="20" CornerRadius="10" BorderThickness="1" BorderBrush="Gray">
+    <Grid Margin="20" VerticalAlignment="Center">
+
+      <StackPanel>
+        <TextBlock Text="Hello, ESAPI! Welcome to Binary Plugins!"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Text="The Current Plan is... " HorizontalAlignment="Center"
+                   Margin="20 20 0 0"/>
+        <TextBlock Text="{Binding CurrentPlan}" HorizontalAlignment="Center"
+                   Margin="0 20 0 0"/>
+      </StackPanel>
+    </Grid>
+  </Border>
+</UserControl>
