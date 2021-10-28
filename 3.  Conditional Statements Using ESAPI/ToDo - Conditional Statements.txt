@@ -1,0 +1,8 @@
+		
+
+
+
+		Conditional Statements -> Truth Statements
+			- If, else if, else
+			- switch
+			- conditional operators -> single line conditional statements
