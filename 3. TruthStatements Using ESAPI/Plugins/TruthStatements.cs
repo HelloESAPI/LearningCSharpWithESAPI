@@ -95,7 +95,7 @@ namespace VMS.TPS
       }
 
 
-      // example one liners
+      // conditional operators
       foreach (var s in context.StructureSet.Structures)
       {
 
