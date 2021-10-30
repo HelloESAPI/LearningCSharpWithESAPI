@@ -21,7 +21,7 @@
 - Switch statements
 - Conditional Operators - single-line conditional statements
 
-#### 4. [Intro to MVVM using ESAPI and Binary Plug-ins]()
+#### 4. [Intro to MVVM using ESAPI and Binary Plug-ins](https://www.youtube.com/watch?v=gBbPA1iq5nI)
 
 - Review the messiness of creating a UI in a single file plug-in for Eclipse
 - Create Binary Plug-in
