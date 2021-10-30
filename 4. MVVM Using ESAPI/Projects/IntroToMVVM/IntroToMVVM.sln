@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroToMVVM", "IntroToMVVM.csproj", "{7FEFE74D-5D7E-4440-A451-FA771116B042}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FEFE74D-5D7E-4440-A451-FA771116B042}.Debug|x64.ActiveCfg = Debug|x64
+		{7FEFE74D-5D7E-4440-A451-FA771116B042}.Debug|x64.Build.0 = Debug|x64
+		{7FEFE74D-5D7E-4440-A451-FA771116B042}.Release|x64.ActiveCfg = Release|x64
+		{7FEFE74D-5D7E-4440-A451-FA771116B042}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38BADCBC-90C7-46DA-A4B2-71B3E7DE03E5}
+	EndGlobalSection
+EndGlobal
