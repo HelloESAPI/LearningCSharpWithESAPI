@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{45EC1F1D-90F5-426C-8430-16B73FF45D02}</ProjectGuid>
+    <ProjectGuid>{3800F279-4FFB-4278-B305-E53EDCB01291}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MVVM_with_Binding</RootNamespace>
     <AssemblyName>MVVM with Binding</AssemblyName>
