@@ -1,0 +1,73 @@
+﻿<Window x:Class="MVVM_with_Binding.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM_with_Binding.Views"
+        mc:Ignorable="d" Background="#fff" FontSize="18" Foreground="Black"
+        Title="MainView" Height="auto" Width="auto">
+  <Border Margin="20" BorderBrush="LightSlateGray" BorderThickness="2" CornerRadius="20">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <TextBlock Grid.Row="0" Text="My Title Here" HorizontalAlignment="Stretch" TextAlignment="Center" Background="LightSlateGray" VerticalAlignment="Center" Margin="20" FontSize="24" FontWeight="SemiBold" Padding="20"/>
+
+      <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <TextBlock Text="Select StructureSet:" Width="200" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding AvailableStructureSetIds}" SelectedItem="{Binding SelectedStructureSetId}" Width="150" Margin="20 0 0 0" VerticalAlignment="Center"/>
+      </StackPanel>
+
+      <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
+        <TextBlock Text="Selected StructureSet Id:" Width="200"/>
+        <TextBlock Text="{Binding StructureSet.Id}" Width="150" Margin="20 0 0 0"/>
+      </StackPanel>
+
+      <Rectangle Grid.Row="3" Width="800" Height="1" Fill="LightGray" Margin="0 20"/>
+
+      <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+        <TextBlock Text="Select Structure:" Width="200" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding Structures}" SelectedItem="{Binding SelectedStructure}" Width="150" Margin="10 0 0 0" VerticalAlignment="Center" DisplayMemberPath="Id"/>
+      </StackPanel>
+
+      <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
+
+        <StackPanel Orientation="Vertical">
+
+          <Rectangle Width="800" Height="1" Fill="LightGray" />
+
+          <TextBlock Text="Selected Structure Details" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="100 20" FontWeight="SemiBold" Background="LightSlateGray" Padding="5"/>
+
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Structure Id" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
+            <TextBlock Text="Dicom Type" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
+            <TextBlock Text="Color" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
+            <TextBlock Text="Volume [cc]" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
+            <TextBlock Text="Max Dose [Gy]" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
+            <TextBlock Text="Mean Dose [Gy]" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+            <TextBlock Text="{Binding SelectedStructure.Id}" Width="150" TextAlignment="Center"/>
+            <TextBlock Text="{Binding SelectedStructure.DicomType}" Width="150" TextAlignment="Center"/>
+            <StackPanel Width="150">
+              <Ellipse Stroke="LightSlateGray" StrokeThickness="1" Fill="{Binding SelectedStructure.Color}" Margin="5" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Text="{Binding SelectedStructure.Volume}" Width="150" TextAlignment="Center"/>
+            <TextBlock Text="{Binding SelectedStructure.MaxDose}" Width="150" TextAlignment="Center"/>
+            <TextBlock Text="{Binding SelectedStructure.MeanDose}" Width="150" TextAlignment="Center"/>
+          </StackPanel>
+
+        </StackPanel>
+
+      </StackPanel>
+
+    </Grid>
+  </Border>
+</Window>
