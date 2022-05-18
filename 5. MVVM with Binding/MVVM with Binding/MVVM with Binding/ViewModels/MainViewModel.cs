@@ -16,14 +16,9 @@ namespace MVVM_with_Binding.ViewModels
     private Random _random { get; set; }
     private string _selectedStructureSetId;
 
-
-
-
     private Structure _selectedStructure;
     private StructureSet _structureSet;
     private List<Structure> _structures;
-
-
 
 
     #endregion
@@ -89,8 +84,8 @@ namespace MVVM_with_Binding.ViewModels
 
     #region Public Properties
 
-    public string Title { get; set; }
-    public List<string> AvailableStructureSetIds { get; set; }
+    public string Title { get; private set; }
+    public List<string> AvailableStructureSetIds { get; private set; }
     public StructureSet StructureSet
     {
       get { return _structureSet; }
