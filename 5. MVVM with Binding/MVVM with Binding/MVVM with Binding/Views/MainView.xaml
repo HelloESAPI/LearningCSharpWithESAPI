@@ -17,11 +17,16 @@
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" Text="My Title Here" HorizontalAlignment="Stretch" TextAlignment="Center" Background="LightSlateGray" VerticalAlignment="Center" Margin="20" FontSize="24" FontWeight="SemiBold" Padding="20"/>
+      <TextBlock Grid.Row="0" Text="{Binding Title}" 
+                 HorizontalAlignment="Stretch" TextAlignment="Center" 
+                 Background="LightSlateGray" VerticalAlignment="Center" 
+                 Margin="20" FontSize="24" FontWeight="SemiBold" Padding="20"/>
 
       <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
         <TextBlock Text="Select StructureSet:" Width="200" VerticalAlignment="Center"/>
-        <ComboBox ItemsSource="{Binding AvailableStructureSetIds}" SelectedItem="{Binding SelectedStructureSetId}" Width="150" Margin="20 0 0 0" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding AvailableStructureSetIds}" 
+                  SelectedItem="{Binding SelectedStructureSetId}" 
+                  Width="150" Margin="20 0 0 0" VerticalAlignment="Center"/>
       </StackPanel>
 
       <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
@@ -33,7 +38,10 @@
 
       <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
         <TextBlock Text="Select Structure:" Width="200" VerticalAlignment="Center"/>
-        <ComboBox ItemsSource="{Binding Structures}" SelectedItem="{Binding SelectedStructure}" Width="150" Margin="10 0 0 0" VerticalAlignment="Center" DisplayMemberPath="Id"/>
+        <ComboBox ItemsSource="{Binding Structures}" 
+                  SelectedItem="{Binding SelectedStructure}" 
+                  Width="150" Margin="10 0 0 0" VerticalAlignment="Center" 
+                  DisplayMemberPath="Id"/>
       </StackPanel>
 
       <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
@@ -42,7 +50,10 @@
 
           <Rectangle Width="800" Height="1" Fill="LightGray" />
 
-          <TextBlock Text="Selected Structure Details" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="100 20" FontWeight="SemiBold" Background="LightSlateGray" Padding="5"/>
+          <TextBlock Text="Selected Structure Details" 
+                     HorizontalAlignment="Stretch" 
+                     TextAlignment="Center" Margin="100 20" FontWeight="SemiBold" 
+                     Background="LightSlateGray" Padding="5"/>
 
           <StackPanel Orientation="Horizontal">
             <TextBlock Text="Structure Id" Width="150" TextAlignment="Center" FontWeight="SemiBold"/>
@@ -57,7 +68,10 @@
             <TextBlock Text="{Binding SelectedStructure.Id}" Width="150" TextAlignment="Center"/>
             <TextBlock Text="{Binding SelectedStructure.DicomType}" Width="150" TextAlignment="Center"/>
             <StackPanel Width="150">
-              <Ellipse Stroke="LightSlateGray" StrokeThickness="1" Fill="{Binding SelectedStructure.Color}" Margin="5" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              <Ellipse Stroke="LightSlateGray" StrokeThickness="1" 
+                       Fill="{Binding SelectedStructure.Color}" Margin="5" 
+                       Width="20" Height="20" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
             </StackPanel>
             <TextBlock Text="{Binding SelectedStructure.Volume}" Width="150" TextAlignment="Center"/>
             <TextBlock Text="{Binding SelectedStructure.MaxDose}" Width="150" TextAlignment="Center"/>

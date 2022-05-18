@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EsapiDataLibrary">
+      <HintPath>..\..\..\..\GitHub_EsapiDataLibrary\EsapiDataLibrary\bin\Debug\EsapiDataLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -95,10 +98,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\HelloESAPI.dev\GitHub_EsapiDataLibrary\EsapiDataLibrary\EsapiDataLibrary.csproj">
-      <Project>{8ac02495-959e-47b7-910d-31a6ec1ff04b}</Project>
-      <Name>EsapiDataLibrary</Name>
-    </ProjectReference>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

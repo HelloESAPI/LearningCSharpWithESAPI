@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 namespace MVVM_with_Binding.ViewModels
 {
   //https://docs.microsoft.com/en-us/dotnet/desktop/wpf/data/how-to-implement-property-change-notification?view=netframeworkdesktop-4.8
-  public class MainViewModel
+  public class MainViewModel : INotifyPropertyChanged
   {
 
     #region Private Properties
@@ -22,6 +22,7 @@ namespace MVVM_with_Binding.ViewModels
     private Structure _selectedStructure;
     private StructureSet _structureSet;
     private List<Structure> _structures;
+
 
 
 
@@ -93,22 +94,22 @@ namespace MVVM_with_Binding.ViewModels
     public StructureSet StructureSet
     {
       get { return _structureSet; }
-      set { _structureSet = value; GetStructures(); }
+      set { _structureSet = value; GetStructures(); OnPropertyChanged(); }
     }
     public string SelectedStructureSetId
     {
       get { return _selectedStructureSetId; }
-      set { _selectedStructureSetId = value; SetSelectedStructureSet(); }
+      set { _selectedStructureSetId = value; SetSelectedStructureSet(); OnPropertyChanged(); }
     }
     public Structure SelectedStructure
     {
       get { return _selectedStructure; }
-      set { _selectedStructure = value; }
+      set { _selectedStructure = value; OnPropertyChanged(); }
     }
     public List<Structure> Structures
     {
       get { return _structures; }
-      set { _structures = value; }
+      set { _structures = value; OnPropertyChanged(); }
     }
 
     #endregion
