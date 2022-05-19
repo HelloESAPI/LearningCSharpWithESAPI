@@ -28,3 +28,10 @@
 - Review the process of adding a view (like in any WPF project)
 - Incorporate the MVVM design pattern in our binary plug-in
 - Generate a template that we can use in the future as a starting point
+
+#### 5. [MVVM with Binding](https://www.youtube.com/watch?v=BEffjcmY_MU)
+
+- Cover the basic differences between
+  - views that use the "code behind" to update/manage its data/interface
+  - views that use a viewmodel (i.e., using MVVM, etc.) to update/mange its data/interface
+- Review a project with examples of the same interface written both with a view using the "code behind" and a view using a viewmodel
