@@ -35,3 +35,4 @@
   - views that use the "code behind" to update/manage its data/interface
   - views that use a viewmodel (i.e., using MVVM, etc.) to update/mange its data/interface
 - Review a project with examples of the same interface written both with a view using the "code behind" and a view using a viewmodel
+- Show how easy it is to fill something like a DataGrid with a list of objects via Binding
