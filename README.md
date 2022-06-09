@@ -38,7 +38,7 @@
 - Show how easy it is to fill something like a DataGrid with a list of objects via Binding
 
 #### 6. Stand-alone Executables with ESAPI
-6a. [Part 1 | Intro to Stand alone Executables](https://youtu.be/5umPshEIty0)
+#####6a. [Part 1 | Intro to Stand alone Executables](https://youtu.be/5umPshEIty0)
 	- What are they?
 	- Create one using the Script Wizard and explore how they're useful
 	- Briefly discuss how to run them within the Eclipse Environment (more in Part 5)
