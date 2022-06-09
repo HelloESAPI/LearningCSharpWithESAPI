@@ -38,22 +38,22 @@
 - Show how easy it is to fill something like a DataGrid with a list of objects via Binding
 
 ### 6. Stand-alone Executables with ESAPI
-##### 6a. [Part 1 | Intro to Stand alone Executables](https://youtu.be/5umPshEIty0)
-- What are they?
-- Create one using the Script Wizard and explore how they're useful
-- Briefly discuss how to run them within the Eclipse Environment (more in Part 5)
+#### [Part 1 | Intro to Stand alone Executables](https://youtu.be/5umPshEIty0)
+##### - What are they?
+##### - Create one using the Script Wizard and explore how they're useful
+##### - Briefly discuss how to run them within the Eclipse Environment (more in Part 5)
 
-##### 6b. [Part 2 | Incorporating ESAPI into a Stand alone Executable](https://youtu.be/A3kOaI7WECo)
+#### [Part 2 | Incorporating ESAPI into a Stand alone Executable](https://youtu.be/A3kOaI7WECo)
 - Incorporate ESAPI into our stand-alone executable
 	- Create an example of accessing ESAPI objects via the executable
 
-##### 6c. [Part 3 | Intro to ConsoleX](https://youtu.be/LbHeakW3MjU)
-- Incorporate ConsoleX, a NuGet Package put together by Rex Cardan
-	- General introduction and brief example of using it with ESAPI
+#### [Part 3 | Intro to ConsoleX](https://youtu.be/LbHeakW3MjU)
+##### - Incorporate ConsoleX, a NuGet Package put together by Rex Cardan
+##### 	- General introduction and brief example of using it with ESAPI
 
-##### 6d. [Part 4 | Adding an Options Dictionary to the Console](https://youtu.be/AnECGMjfiQY)
-- Add an "options" dictionary to the ConsoleUI object (ConsoleX)
+#### [Part 4 | Adding an Options Dictionary to the Console](https://youtu.be/AnECGMjfiQY)
+##### - Add an "options" dictionary to the ConsoleUI object (ConsoleX)
 
-##### 6e. [Part 5 | Creating a Plugin Runner to Launch our Executable From Eclipse](https://youtu.be/a9f5ePuPLdI)
-- Further discuss launching stand-alone executables within the Eclipse environment
-- Create a plugin runner (single file plugin) that can be run from the normal Eclipse scripts location to launch the stand-alone executable
+#### [Part 5 | Creating a Plugin Runner to Launch our Executable From Eclipse](https://youtu.be/a9f5ePuPLdI)
+##### - Further discuss launching stand-alone executables within the Eclipse environment
+##### - Create a plugin runner (single file plugin) that can be run from the normal Eclipse scripts location to launch the stand-alone executable
