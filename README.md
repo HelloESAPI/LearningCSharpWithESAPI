@@ -39,21 +39,21 @@
 
 ### 6. Stand-alone Executables with ESAPI
 #### [Part 1 | Intro to Stand alone Executables](https://youtu.be/5umPshEIty0)
-##### - What are they?
-##### - Create one using the Script Wizard and explore how they're useful
-##### - Briefly discuss how to run them within the Eclipse Environment (more in Part 5)
+- What are they?
+- Create one using the Script Wizard and explore how they're useful
+- Briefly discuss how to run them within the Eclipse Environment (more in Part 5)
 
 #### [Part 2 | Incorporating ESAPI into a Stand alone Executable](https://youtu.be/A3kOaI7WECo)
 - Incorporate ESAPI into our stand-alone executable
 	- Create an example of accessing ESAPI objects via the executable
 
 #### [Part 3 | Intro to ConsoleX](https://youtu.be/LbHeakW3MjU)
-##### - Incorporate ConsoleX, a NuGet Package put together by Rex Cardan
-##### 	- General introduction and brief example of using it with ESAPI
+- Incorporate ConsoleX, a NuGet Package put together by Rex Cardan
+	- General introduction and brief example of using it with ESAPI
 
 #### [Part 4 | Adding an Options Dictionary to the Console](https://youtu.be/AnECGMjfiQY)
-##### - Add an "options" dictionary to the ConsoleUI object (ConsoleX)
+- Add an "options" dictionary to the ConsoleUI object (ConsoleX)
 
 #### [Part 5 | Creating a Plugin Runner to Launch our Executable From Eclipse](https://youtu.be/a9f5ePuPLdI)
-##### - Further discuss launching stand-alone executables within the Eclipse environment
-##### - Create a plugin runner (single file plugin) that can be run from the normal Eclipse scripts location to launch the stand-alone executable
+- Further discuss launching stand-alone executables within the Eclipse environment
+- Create a plugin runner (single file plugin) that can be run from the normal Eclipse scripts location to launch the stand-alone executable
