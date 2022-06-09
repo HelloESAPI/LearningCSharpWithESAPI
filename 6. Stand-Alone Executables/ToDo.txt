@@ -1,0 +1,17 @@
+Stand-alone Executables and ESAPI
+
+1. What is it...
+
+2. Make one and explore how it's useful...
+
+3. Discuss how to run it in the Eclipse environment...
+
+4. Use ConsoleX NuGet Package from Rex Cardan...
+
+5. Show example of adding options dictionary to the ConsoleUI
+
+6. Create a Plugin Runner to launch our stand-alone executable from eclipse (Tools -> Scripts)
+
+
+
+
