@@ -1,0 +1,99 @@
+﻿[
+  {
+    "Id": "123456789",
+    "FirstName": "Anon",
+    "LastName" : "Ymous",
+    "Courses": [
+      {
+        "Id" : "Course1",
+        "PlanSetups": [
+          {
+            "Id": "Plan1",
+            "StructureSet": {
+              "Id": "StructureSet1",
+              "Structures": [
+                {
+                  "Id": "PTV",
+                  "DicomType": "PTV",
+                  "Volume": 123.45,
+                  "MaxDose": 49.235,
+                  "MeanDose": 46.573,
+                  "RGBString": "255,0,0"
+                },
+                {
+                  "Id": "Brain",
+                  "DicomType": "Organ",
+                  "Volume": 335.472,
+                  "MaxDose": 49.235,
+                  "MeanDose": 9.384,
+                  "RGBString": "255,192,203"
+                }
+              ]
+            },
+            "Beams": [
+              {
+                "Id": "CCW-1",
+                "BeamType": "MlcArcBeam",
+                "Comment": "CCW ARC 179.0 TO 180.0",
+                "MachineParameters": {
+                  "MachineId": "Linac1",
+                  "EnergyModelId": "6X",
+                  "DoseRate": 600,
+                  "PrimaryFluenceModel": "",
+                  "TechniqueId": "ARC"
+                },
+                "LeafPositions": null,
+                "JawPositions": {
+                  "X1": 7.5,
+                  "X2": 7.5,
+                  "Y1": 12.5,
+                  "Y2": 12.5
+                },
+                "CollimatorAngle": 10.0,
+                "GantryAngle": 179.0,
+                "GantryStop": 181.0,
+                "GantryDirection": "CounterClockwise",
+                "PatientSupportAngle": 0,
+                "Isocenter":{
+                  "x":0.0,
+                  "y":0.0,
+                  "z":0.0
+                }
+              },
+              {
+                "Id": "AP Setup",
+                "BeamType": "SetupBeam",
+                "Comment": "AP SETUP FIELD",
+                "MachineParameters": {
+                  "MachineId": "Linac1",
+                  "EnergyModelId": "6X",
+                  "DoseRate": 600,
+                  "PrimaryFluenceModel": "",
+                  "TechniqueId": "STATIC"
+                },
+                "LeafPositions": null,
+                "JawPositions": {
+                  "X1": 10.0,
+                  "X2": 10.0,
+                  "Y1": 10.0,
+                  "Y2": 10.0
+                },
+                "CollimatorAngle": 0.0,
+                "GantryAngle": 0,
+                "GantryStop": null,
+                "GantryDirection": "None",
+                "PatientSupportAngle": 0,
+                "Isocenter":{
+                  "x":0.0,
+                  "y":0.0,
+                  "z":0.0
+                }
+              }
+            ]
+          }
+        ]
+
+      }
+    ]
+  }
+]

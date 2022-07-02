@@ -1,0 +1,89 @@
+[
+  {
+    "Id": "1-CCW",
+    "BeamType": "MlcArcBeam",
+    "Comment": "CCW ARC 179.0 TO 180.0",
+    "MachineParameters": {
+      "MachineId": "Linac1",
+      "EnergyModelId": "6X",
+      "DoseRate": 600,
+      "PrimaryFluenceModel": "",
+      "TechniqueId": "ARC"
+    },
+    "LeafPositions": null,
+    "JawPositions": {
+      "X1": 7.5,
+      "X2": 7.5,
+      "Y1": 12.5,
+      "Y2": 12.5
+    },
+    "CollimatorAngle": 10.0,
+    "GantryAngle": 179.0,
+    "GantryStop": 181.0,
+    "GantryDirection": "CounterClockwise",
+    "PatientSupportAngle": 0,
+    "Isocenter": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    }
+  },
+  {
+    "Id": "2-CCW",
+    "BeamType": "MlcArcBeam",
+    "Comment": "CCW ARC 179.0 TO 180.0",
+    "MachineParameters": {
+      "MachineId": "Linac1",
+      "EnergyModelId": "6X",
+      "DoseRate": 600,
+      "PrimaryFluenceModel": "",
+      "TechniqueId": "ARC"
+    },
+    "LeafPositions": null,
+    "JawPositions": {
+      "X1": 7.5,
+      "X2": 7.5,
+      "Y1": 12.5,
+      "Y2": 12.5
+    },
+    "CollimatorAngle": 350.0,
+    "GantryAngle": 181.0,
+    "GantryStop": 179.0,
+    "GantryDirection": "Clockwise",
+    "PatientSupportAngle": 0,
+    "Isocenter": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    }
+  },
+  {
+    "Id": "AP Setup",
+    "BeamType": "SetupBeam",
+    "Comment": "AP SETUP FIELD",
+    "MachineParameters": {
+      "MachineId": "Linac1",
+      "EnergyModelId": "6X",
+      "DoseRate": 600,
+      "PrimaryFluenceModel": "",
+      "TechniqueId": "STATIC"
+    },
+    "LeafPositions": null,
+    "JawPositions": {
+      "X1": 10.0,
+      "X2": 10.0,
+      "Y1": 10.0,
+      "Y2": 10.0
+    },
+    "CollimatorAngle": 0.0,
+    "GantryAngle": 0,
+    "GantryStop": null,
+    "GantryDirection": "None",
+    "PatientSupportAngle": 0,
+    "Isocenter": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    }
+  }
+]
