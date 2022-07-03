@@ -1,0 +1,3 @@
+﻿BeamType,Id,Comment,MachineId,Energy,DoseRate,PrimaryFluenceModel,Tenchnique,LeafPositions,X1,X2,Y1,Y2,CollimatorAngle,GantryAngle,GantryStop,GantryDirection,PatientSupportAngle,IsoX,IsoY,IsoZ
+MlcArcBeam,1-CCW,CCW ARC 179.0 TO 181.0,Linac1,6X,600,,ARC,,7.5,7.5,12.5,12.5,10,179,181,CounterClockwise,0,0,0,0
+MlcArcBeam,2-CW,CW ARC 181.0 TO 179.0,Linac1,6X,600,,ARC,,7.5,7.5,12.5,12.5,350,181,179,Clockwise,0,0,0,0

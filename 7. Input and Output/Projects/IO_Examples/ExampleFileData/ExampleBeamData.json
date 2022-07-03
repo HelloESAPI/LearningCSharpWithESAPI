@@ -2,7 +2,7 @@
   {
     "Id": "1-CCW",
     "BeamType": "MlcArcBeam",
-    "Comment": "CCW ARC 179.0 TO 180.0",
+    "Comment": "CCW ARC 179.0 TO 181.0",
     "MachineParameters": {
       "MachineId": "Linac1",
       "EnergyModelId": "6X",

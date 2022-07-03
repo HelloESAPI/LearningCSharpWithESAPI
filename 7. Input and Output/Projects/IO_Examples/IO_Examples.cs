@@ -8,6 +8,8 @@ using VMS.TPS.Common.Model.Types;
 using System.IO;
 using System.Windows.Media;
 using IO_Examples.Models;
+using EsapiDataLibrary.Models;
+using System.Diagnostics;
 
 // TODO: Replace the following version attributes by creating AssemblyInfo.cs. You can do this in the properties of the Visual Studio project.
 [assembly: AssemblyVersion("1.0.0.1")]
@@ -22,7 +24,6 @@ namespace IO_Examples
   class Program
   {
     private static bool _debug = true;
-    private static string _pathToFile;
 
     [STAThread]
     static void Main(string[] args)
@@ -43,6 +44,15 @@ namespace IO_Examples
     static void Execute(Application app)
     {
       // Topics: 
+      // WHY?
+      // data collection, loading data from files, e.g., beam data
+      
+      // loading data from files vs hard coding
+      // -> using data from files means things can be changed easily
+      // -> when data is hard coded, the script must be edited, rebuilt, and reapproved in order to be useful again
+      
+
+      // File types?
       // .csv, .json, .js, and .txt
 
       // .csv -> CSV File: Comma Separated Value - think simplified spreadsheet where a comma defines a new column (unless wrapped in quotes)
@@ -72,14 +82,52 @@ namespace IO_Examples
       try
       {
         string projectDir = AppDomain.CurrentDomain.BaseDirectory.Replace(@"\bin\debug", "");
-        string patientDataPath = projectDir + @"\ExampleFileData\ExamplePatientData.json";
-        string beamDataPath = projectDir + @"\ExampleFileData\ExampleBeamData.json";
+        string jsonPatientDataPath = projectDir + @"\ExampleFileData\ExamplePatientData.json";
+        string jsonBeamDataPath = projectDir + @"\ExampleFileData\ExampleBeamData.json";
+        string csvBeamDataPath = projectDir + @"\ExampleFileData\ExampleBeamData.csv";
+        string jsDataStringPath = projectDir + @"\ExampleFileData\Output\jsDataString.js";
+        string jsDataStringBuilderPath = projectDir + @"\ExampleFileData\Output\jsDataStringBuilder.js";
+        string textLogFilePath = projectDir + @"\ExampleFileData\Output\log.txt";
 
-        List<EsapiDataLibrary.Models.Patient> patients = JsonModel.LoadPatients(patientDataPath);
-        Console.WriteLine("Patients collected from JSON");
+        Stopwatch sw = new Stopwatch();
 
-        List<EsapiDataLibrary.Models.GenericBeam> beams = JsonModel.LoadBeams(beamDataPath);
-        Console.WriteLine("Beams collected from JSON");
+        // to save something like this in a csv, all of the structure data for a plan would have to be in a single column or in a separate file
+        // for saving this info, you would likely have a folder for each course, then each plan, etc. and then in each folder have a file for each of the objects in the plan, e.g., beams, structures, etc. 
+        // csv files can be limiting when you want layered/nested data...unless you include each level of data descriptor in every row...e.g., patien id, course id, plan id, structure set id, structure id, etc. in every single row...so that when you're analysing your data, you know how to group it.
+
+        // CSV files lend well, though, to saving or reading specific object data that doesn't need to be nested/layered
+        // e.g., reading beam template data, constraint data, etc...
+        sw.Start();
+        List<GenericBeam> beamsFromCsv = CsvModel.LoadBeams(csvBeamDataPath);
+        sw.Stop();
+
+        Console.WriteLine($"{beamsFromCsv.Count} beams collected from .csv in {sw.ElapsedMilliseconds} ms");
+
+
+        // json files lend well to reading nested object data, e.g., Plan has a structure set which has structures, etc. 
+        // JSON files are data only files - this means they only contain data in the form of json objects...comments, other code, etc. is not allowed - that's where js files come in
+        sw.Restart();
+        List<EsapiDataLibrary.Models.Patient> patientsFromJson = JsonModel.LoadPatients(jsonPatientDataPath);
+        sw.Stop();
+        Console.WriteLine($"{patientsFromJson.Count} patients collected from .json in {sw.ElapsedMilliseconds} ms");
+
+        // beam template data from JSON - e.g., inserted beams for use in autoplanning
+        sw.Restart();
+        List<GenericBeam> beamsFromJson = JsonModel.LoadBeams(jsonBeamDataPath);
+        sw.Stop();
+        Console.WriteLine($"{beamsFromJson.Count} beams collected from .json in {sw.ElapsedMilliseconds} ms");
+
+        // js - JavaScript files - these are similar to JSON files but can have comments, other javascript code, and can be read by static html documents that don't have a running web server
+        // get a test structureset
+        EsapiDataLibrary.Models.StructureSet testStructureSet = EsapiDataLibrary.Data.Structures.GetSampleStructureSet("ProstateTest",
+          EsapiDataLibrary.Data.Structures.GetStructureSet("Prostate"), new Random());
+
+        int loopSize = 1000;
+
+        Stopwatch stringAdditionStopwatch = JsModel.SaveTestDataWithString(testStructureSet, loopSize, jsDataStringPath);
+        Stopwatch stringBuilderStopwatch = JsModel.SaveTestDataWithStringBuilder(testStructureSet, loopSize, jsDataStringBuilderPath);
+
+        Console.WriteLine($"{loopSize} iterations took \n\t{stringAdditionStopwatch.Elapsed.TotalSeconds} total seconds using string addition ( += )\n\t{stringBuilderStopwatch.Elapsed.TotalSeconds} total seconds for string builder (concatenation)");
 
 
       }
@@ -90,8 +138,8 @@ namespace IO_Examples
       }
 
 
-      Console.WriteLine("Done...");
-      Console.ReadLine();
+      Console.WriteLine("Done. Press any key to exit...");
+      Console.ReadKey();
 
     }
 

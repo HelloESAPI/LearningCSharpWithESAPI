@@ -58,15 +58,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO_Examples.cs" />
+    <Compile Include="Models\CsvModel.cs" />
+    <Compile Include="Models\JsModel.cs" />
     <Compile Include="Models\JsonModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ExampleFileData\ExampleBeamData.csv" />
     <None Include="ExampleFileData\ExampleBeamData.json" />
     <None Include="ExampleFileData\ExamplePatientData.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ExampleFileData\Output\" />
     <Folder Include="Models\VMSModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HtmlExample\Html\ReadingJsData.html" />
+    <Content Include="HtmlExample\JavaScript\structures.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
