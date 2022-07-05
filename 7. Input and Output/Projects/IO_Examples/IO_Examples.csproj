@@ -8,8 +8,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IO_Examples</RootNamespace>
     <AssemblyName>IO_Examples</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
@@ -31,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConsoleX, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ConsoleX.1.1.0\lib\net462\ConsoleX.dll</HintPath>
+    </Reference>
     <Reference Include="EsapiDataLibrary">
       <HintPath>..\..\..\..\GitHub_EsapiDataLibrary\EsapiDataLibrary\bin\Debug\EsapiDataLibrary.dll</HintPath>
     </Reference>
@@ -39,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,14 +66,17 @@
     <Compile Include="Models\CsvModel.cs" />
     <Compile Include="Models\JsModel.cs" />
     <Compile Include="Models\JsonModel.cs" />
+    <Compile Include="Models\LoggerModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ExampleFileData\ExampleBeamData.csv" />
     <None Include="ExampleFileData\ExampleBeamData.json" />
     <None Include="ExampleFileData\ExamplePatientData.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ExampleFileData\Logs\" />
     <Folder Include="ExampleFileData\Output\" />
     <Folder Include="Models\VMSModels\" />
   </ItemGroup>

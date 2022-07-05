@@ -10,6 +10,7 @@ using System.Windows.Media;
 using IO_Examples.Models;
 using EsapiDataLibrary.Models;
 using System.Diagnostics;
+using ConsoleX;
 
 // TODO: Replace the following version attributes by creating AssemblyInfo.cs. You can do this in the properties of the Visual Studio project.
 [assembly: AssemblyVersion("1.0.0.1")]
@@ -24,13 +25,14 @@ namespace IO_Examples
   class Program
   {
     private static bool _debug = true;
+    private static string _projectDir;
+    private static string _logFilePath;
 
     [STAThread]
     static void Main(string[] args)
     {
       try
       {
-
         using (Application app = _debug ? null : Application.CreateApplication())
         {
           Execute(app);
@@ -46,11 +48,11 @@ namespace IO_Examples
       // Topics: 
       // WHY?
       // data collection, loading data from files, e.g., beam data
-      
+
       // loading data from files vs hard coding
       // -> using data from files means things can be changed easily
       // -> when data is hard coded, the script must be edited, rebuilt, and reapproved in order to be useful again
-      
+
 
       // File types?
       // .csv, .json, .js, and .txt
@@ -77,23 +79,31 @@ namespace IO_Examples
       //string[] lines = File.ReadAllLines(_pathToFile/*, encoding*/);
       //string text = File.ReadAllText(_pathToFile/*, encoding*/);
 
-      // json...
+
+      // ui
+      ConsoleUI ui = new ConsoleUI();
+      // timer
+      Stopwatch swTotalLogTime = new Stopwatch();
+      // start the timer
+      swTotalLogTime.Start();
 
       try
       {
-        string projectDir = AppDomain.CurrentDomain.BaseDirectory.Replace(@"\bin\debug", "");
-        string jsonPatientDataPath = projectDir + @"\ExampleFileData\ExamplePatientData.json";
-        string jsonBeamDataPath = projectDir + @"\ExampleFileData\ExampleBeamData.json";
-        string csvBeamDataPath = projectDir + @"\ExampleFileData\ExampleBeamData.csv";
-        string jsDataStringPath = projectDir + @"\ExampleFileData\Output\jsDataString.js";
-        string jsDataStringBuilderPath = projectDir + @"\ExampleFileData\Output\jsDataStringBuilder.js";
-        string textLogFilePath = projectDir + @"\ExampleFileData\Output\log.txt";
+        _projectDir = AppDomain.CurrentDomain.BaseDirectory.Replace(@"\bin\debug", "");
+        _logFilePath = _projectDir + @"\ExampleFileData\Logs\log.txt";
+        // read
+        string jsonPatientDataPath = _projectDir + @"\ExampleFileData\ExamplePatientData.json";
+        string jsonBeamDataPath = _projectDir + @"\ExampleFileData\ExampleBeamData.json";
+        string csvBeamDataPath = _projectDir + @"\ExampleFileData\ExampleBeamData.csv";
+        // write
+        string jsDataStringPath = _projectDir + @"\ExampleFileData\Output\jsDataString.js";
+        string jsDataStringBuilderPath = _projectDir + @"\ExampleFileData\Output\jsDataStringBuilder.js";
 
         Stopwatch sw = new Stopwatch();
 
         // to save something like this in a csv, all of the structure data for a plan would have to be in a single column or in a separate file
         // for saving this info, you would likely have a folder for each course, then each plan, etc. and then in each folder have a file for each of the objects in the plan, e.g., beams, structures, etc. 
-        // csv files can be limiting when you want layered/nested data...unless you include each level of data descriptor in every row...e.g., patien id, course id, plan id, structure set id, structure id, etc. in every single row...so that when you're analysing your data, you know how to group it.
+        // csv files can be limiting when you want layered/nested data...unless you include each level of data descriptor in every row...e.g., patient id, course id, plan id, structure set id, structure id, etc. in every single row...so that when you're analysing your data, you know how to group it.
 
         // CSV files lend well, though, to saving or reading specific object data that doesn't need to be nested/layered
         // e.g., reading beam template data, constraint data, etc...
@@ -101,7 +111,7 @@ namespace IO_Examples
         List<GenericBeam> beamsFromCsv = CsvModel.LoadBeams(csvBeamDataPath);
         sw.Stop();
 
-        Console.WriteLine($"{beamsFromCsv.Count} beams collected from .csv in {sw.ElapsedMilliseconds} ms");
+        ui.Write($"  {beamsFromCsv.Count} beams collected from .csv in {sw.ElapsedMilliseconds} ms");
 
 
         // json files lend well to reading nested object data, e.g., Plan has a structure set which has structures, etc. 
@@ -109,38 +119,66 @@ namespace IO_Examples
         sw.Restart();
         List<EsapiDataLibrary.Models.Patient> patientsFromJson = JsonModel.LoadPatients(jsonPatientDataPath);
         sw.Stop();
-        Console.WriteLine($"{patientsFromJson.Count} patients collected from .json in {sw.ElapsedMilliseconds} ms");
+        ui.Write($"  {patientsFromJson.Count} patients collected from .json in {sw.ElapsedMilliseconds} ms");
 
         // beam template data from JSON - e.g., inserted beams for use in autoplanning
         sw.Restart();
         List<GenericBeam> beamsFromJson = JsonModel.LoadBeams(jsonBeamDataPath);
         sw.Stop();
-        Console.WriteLine($"{beamsFromJson.Count} beams collected from .json in {sw.ElapsedMilliseconds} ms");
+        ui.Write($"  {beamsFromJson.Count} beams collected from .json in {sw.ElapsedMilliseconds} ms");
 
         // js - JavaScript files - these are similar to JSON files but can have comments, other javascript code, and can be read by static html documents that don't have a running web server
         // get a test structureset
         EsapiDataLibrary.Models.StructureSet testStructureSet = EsapiDataLibrary.Data.Structures.GetSampleStructureSet("ProstateTest",
           EsapiDataLibrary.Data.Structures.GetStructureSet("Prostate"), new Random());
+        
+        // add some space
+        ui.SkipLines(2);
 
-        int loopSize = 1000;
+        // get loop size
+        int loopSize = ui.GetIntInput("How big should our loop be?");
 
-        Stopwatch stringAdditionStopwatch = JsModel.SaveTestDataWithString(testStructureSet, loopSize, jsDataStringPath);
-        Stopwatch stringBuilderStopwatch = JsModel.SaveTestDataWithStringBuilder(testStructureSet, loopSize, jsDataStringBuilderPath);
+        // add some space
+        ui.SkipLines(2);
 
-        Console.WriteLine($"{loopSize} iterations took \n\t{stringAdditionStopwatch.Elapsed.TotalSeconds} total seconds using string addition ( += )\n\t{stringBuilderStopwatch.Elapsed.TotalSeconds} total seconds for string builder (concatenation)");
+        Stopwatch stringAdditionStopwatch = JsModel.SaveTestDataWithString(ui, testStructureSet, loopSize, jsDataStringPath);
+        ui.SkipLines(1);
+        ui.Write($"  {loopSize} iterations of structure data saved using string addition {stringAdditionStopwatch.Elapsed.TotalSeconds}");
+        ui.SkipLines(2);
+
+        Stopwatch stringBuilderStopwatch = JsModel.SaveTestDataWithStringBuilder(ui, testStructureSet, loopSize, jsDataStringBuilderPath);
+        ui.SkipLines(1);
+        ui.Write($"  {loopSize} iterations of structure data saved using string addition {stringBuilderStopwatch.Elapsed.TotalSeconds}");
+        ui.SkipLines(2);
+
+        //Exception exception = new Exception();
+        //throw exception;
+        ui.SkipLines(2);
+        ui.Write($"  {loopSize} iterations took \n\t{stringAdditionStopwatch.Elapsed.TotalSeconds} total seconds using string addition ( += )\n\t{stringBuilderStopwatch.Elapsed.TotalSeconds} total seconds for string builder (concatenation)");
+
+        // stop total log time
+        swTotalLogTime.Stop();
 
 
       }
       catch (Exception ex)
       {
-        Console.WriteLine(ex.Message);
-        Console.WriteLine(ex.StackTrace);
+        ui.Write(ex.Message);
+        ui.Write(ex.StackTrace);
+      }
+      if (swTotalLogTime.IsRunning == true)
+      {
+        swTotalLogTime.Stop();
+        LoggerModel.LogInformation(string.Format("application success = false;{0};totalseconds={1};\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds), _logFilePath);
+      }
+      else
+      {
+        LoggerModel.LogInformation(string.Format("application success = true;{0};totalseconds={1};\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds), _logFilePath);
       }
 
 
-      Console.WriteLine("Done. Press any key to exit...");
+      ui.Write("Done. Press any key to exit...");
       Console.ReadKey();
-
     }
 
 

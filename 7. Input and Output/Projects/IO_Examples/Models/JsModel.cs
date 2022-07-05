@@ -18,20 +18,30 @@ namespace IO_Examples.Models
     /// <param name="loopSize"></param>
     /// <param name="pathToWriteTo"></param>
     /// <returns></returns>
-    public static Stopwatch SaveTestDataWithStringBuilder(StructureSet structureSet, int loopSize, string pathToWriteTo)
+    public static Stopwatch SaveTestDataWithStringBuilder(ConsoleX.ConsoleUI ui, StructureSet structureSet, int loopSize, string pathToWriteTo)
     {
+      // timer
+      Stopwatch sw = new Stopwatch();
+      sw.Start();
+
+      // stringbuilder to hold string data
       StringBuilder jsData = new StringBuilder();
       jsData.Append("let stringBuilderData = {\"StructureData\" : [");
 
-      Stopwatch sw = new Stopwatch();
-      sw.Start();
+      // set ui progress bar color
+      ui.ProgressBarColor = ConsoleColor.Cyan;
+      
+      // add structure list info for each iteration through loop
       for (int i = 0; i < loopSize; i++)
       {
         foreach (var s in structureSet.Structures)
         {
           AppendStringDataToStringBuilder(jsData, s);
         }
+        // update progress
+        ui.WriteProgressBar(((i + 1) * 100) / loopSize, true);
       }
+      // remove last comma
       jsData.Length--; // essentially removes the last index by reducing its length by one
       // close structure data list
       jsData.Append("]");
@@ -61,6 +71,7 @@ namespace IO_Examples.Models
                         $"\"MaxDose\":\"{s.MaxDose}\"," +
                         $"\"MeanDose\":\"{s.MeanDose}\"" +
                         $"}},");
+      //string.Format("{\"Id\":{0},\"DicomType\":{1}", s.Id, s.DicomType, ....);
     }
     /// <summary>
     /// Saves/Writes data using string +=... - returns stopwatch that only accounts for time to compile the string data
@@ -69,18 +80,29 @@ namespace IO_Examples.Models
     /// <param name="loopSize"></param>
     /// <param name="pathToWriteTo"></param>
     /// <returns></returns>
-    public static Stopwatch SaveTestDataWithString(StructureSet structureSet, int loopSize, string pathToWriteTo)
+    public static Stopwatch SaveTestDataWithString(ConsoleX.ConsoleUI ui, StructureSet structureSet, int loopSize, string pathToWriteTo)
     {
-      string jsData = "let stringAdditionData = {\"StructureData\" : [";
+      // timer
       Stopwatch sw = new Stopwatch();
       sw.Start();
+
+      // string data
+      string jsData = "let stringAdditionData = {\"StructureData\" : [";
+
+      // set ui progress bar color
+      ui.ProgressBarColor = ConsoleColor.DarkCyan;
+      
+      // add structure list info for each iteration through loop
       for (int i = 0; i < loopSize; i++)
       {
         foreach (var s in structureSet.Structures)
         {
           jsData = GetStructureDataString(jsData, s);
         } 
+        // update progress
+        ui.WriteProgressBar(((i + 1) * 100)/ loopSize, true);
       }
+
       // remove the last comma
       jsData.TrimEnd(',');
       // close the structure list
@@ -114,5 +136,7 @@ namespace IO_Examples.Models
                   $"}},";
       return structureDataString;
     }
+    // string data types are immutable - cannot be edited
+    // stringbuilder objects are mutable - can be edited
   }
 }
