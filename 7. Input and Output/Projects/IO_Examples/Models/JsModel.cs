@@ -30,7 +30,7 @@ namespace IO_Examples.Models
 
       // set ui progress bar color
       ui.ProgressBarColor = ConsoleColor.Cyan;
-      
+
       // add structure list info for each iteration through loop
       for (int i = 0; i < loopSize; i++)
       {
@@ -80,27 +80,45 @@ namespace IO_Examples.Models
     /// <param name="loopSize"></param>
     /// <param name="pathToWriteTo"></param>
     /// <returns></returns>
-    public static Stopwatch SaveTestDataWithString(ConsoleX.ConsoleUI ui, StructureSet structureSet, int loopSize, string pathToWriteTo)
+    public static Stopwatch SaveTestDataWithString(ConsoleX.ConsoleUI ui, StructureSet structureSet, int loopSize, string pathToWriteTo, string pathToLogProgressTo = "", bool logProgress = false)
     {
       // timer
-      Stopwatch sw = new Stopwatch();
-      sw.Start();
+      Stopwatch sw = Stopwatch.StartNew();
 
       // string data
       string jsData = "let stringAdditionData = {\"StructureData\" : [";
 
       // set ui progress bar color
       ui.ProgressBarColor = ConsoleColor.DarkCyan;
-      
+
       // add structure list info for each iteration through loop
       for (int i = 0; i < loopSize; i++)
       {
-        foreach (var s in structureSet.Structures)
+        // if user wants to log progress 
+        if (logProgress)
         {
-          jsData = GetStructureDataString(jsData, s);
-        } 
+          // get the data for each structure, timing each one
+          foreach (var s in structureSet.Structures)
+          {
+            // use a timer to log the time it takes for each iteration
+            // create and start the timer
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            jsData = GetStructureDataString(jsData, s);
+            // stop the timer
+            stopwatch.Stop();
+            File.AppendAllText(pathToLogProgressTo, $"loop={i};characters={jsData.Length};seconds={stopwatch.Elapsed.TotalSeconds};\n");
+          }
+        }
+        else // if not logging the progress, just do the work
+        {
+          foreach (var s in structureSet.Structures)
+          {
+            jsData = GetStructureDataString(jsData, s);
+          }
+        }
+
         // update progress
-        ui.WriteProgressBar(((i + 1) * 100)/ loopSize, true);
+        ui.WriteProgressBar(((i + 1) * 100) / loopSize, true);
       }
 
       // remove the last comma
@@ -114,6 +132,7 @@ namespace IO_Examples.Models
         $"}}"; // have to close the js object
       // write the data to file
       File.WriteAllText(pathToWriteTo, jsData);
+
 
       // return the stopwatch in case want to print the time in the application
       return sw;
