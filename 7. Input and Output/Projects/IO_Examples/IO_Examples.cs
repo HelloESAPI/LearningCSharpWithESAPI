@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
-using System.IO;
 using System.Windows.Media;
 using IO_Examples.Models;
 using EsapiDataLibrary.Models;
 using System.Diagnostics;
 using ConsoleX;
+using System.IO;
 
 // TODO: Replace the following version attributes by creating AssemblyInfo.cs. You can do this in the properties of the Visual Studio project.
 [assembly: AssemblyVersion("1.0.0.1")]
@@ -28,6 +28,7 @@ namespace IO_Examples
     private static string _projectDir;
     private static string _logFilePath;
     private static int _loopSize;
+    private static bool _logException = false;
 
     [STAThread]
     static void Main(string[] args)
@@ -60,7 +61,6 @@ namespace IO_Examples
 
       // Reading/Writing Files:
       // using System.IO; -> input / output operations
-
       //byte[] bytes = File.ReadAllBytes(_pathToFile);
       //string[] lines = File.ReadAllLines(_pathToFile/*, encoding*/);
       //string text = File.ReadAllText(_pathToFile/*, encoding*/);
@@ -135,23 +135,25 @@ namespace IO_Examples
         // json files lend well to reading nested object data, e.g., Plan has a structure set which has structures, etc. 
         // JSON files are data only files - this means they only contain data in the form of json objects...comments, other code, etc. is not allowed - that's where js files come in
 
+        // add space between csv section
+        ui.SkipLines(2);
 
 
+        // example 1: loading a dummy patient object - nested data objects
+        // restart the timer for this task
+        sw.Restart();
+        List<EsapiDataLibrary.Models.Patient> patientsFromJson = JsonModel.LoadPatients(jsonPatientDataPath);
+        sw.Stop();
+        // example of string interpolation
+        ui.Write($"  {patientsFromJson.Count} patients collected from .json in {sw.Elapsed.TotalMilliseconds} ms");
+        // string.Format()
+        //ui.Write(string.Format("\n\n  {0} patients collected from .json in {1} ms", patientsFromJson.Count, sw.ElapsedMilliseconds));
 
-
-        //// example 1: loading a dummy patient object - nested data objects
-        //// restart the timer for this task
-        //sw.Restart();
-        //List<EsapiDataLibrary.Models.Patient> patientsFromJson = JsonModel.LoadPatients(jsonPatientDataPath);
-        //sw.Stop();
-        //ui.Write($"  {patientsFromJson.Count} patients collected from .json in {sw.ElapsedMilliseconds} ms");
-
-
-        //// example 2: beam template data from JSON - e.g., inserted beams for use in autoplanning
-        //sw.Restart();
-        //List<GenericBeam> beamsFromJson = JsonModel.LoadBeams(jsonBeamDataPath);
-        //sw.Stop();
-        //ui.Write($"  {beamsFromJson.Count} beams collected from .json in {sw.ElapsedMilliseconds} ms");
+        // example 2: beam template data from JSON - e.g., inserted beams for use in autoplanning
+        sw.Restart();
+        List<GenericBeam> beamsFromJson = JsonModel.LoadBeams(jsonBeamDataPath);
+        sw.Stop();
+        ui.Write($"  {beamsFromJson.Count} beams collected from .json in {sw.Elapsed.TotalMilliseconds} ms");
 
 
 
@@ -161,58 +163,58 @@ namespace IO_Examples
 
         #region JS -> .js
 
-        //// .js -> JavaScript file -> a file that contains javascript code - these are useful when reading data for static html documents when you don't have a web server running
+        // .js -> JavaScript file -> a file that contains javascript code - these are useful when reading data for static html documents when you don't have a web server running
 
-        //// js - JavaScript files - these are similar to JSON files but can have comments, other javascript code, and can be read by static html documents that don't have a running web server
-        //// get a test structureset
-        //EsapiDataLibrary.Models.StructureSet testStructureSet = EsapiDataLibrary.Data.Structures.GetSampleStructureSet("ProstateTest",
-        //  EsapiDataLibrary.Data.Structures.GetStructureSet("Prostate"), new Random());
+        // js - JavaScript files - these are similar to JSON files but can have comments, other javascript code, and can be read by static html documents that don't have a running web server
+        // get a test structureset
+        EsapiDataLibrary.Models.StructureSet testStructureSet = EsapiDataLibrary.Data.Structures.GetSampleStructureSet("ProstateTest",
+          EsapiDataLibrary.Data.Structures.GetStructureSet("Prostate"), new Random());
 
-        //// add some space
-        //ui.SkipLines(2);
+        // add some space
+        ui.SkipLines(2);
 
-        //// get loop size from the user
-        //_loopSize = ui.GetIntInput("How big should our loop be?");
+        // get loop size from the user
+        _loopSize = ui.GetIntInput("How big should our loop be?");
 
-        //// add some space
-        //ui.SkipLines(2);
-
-
-        //// test saving the structure data using the string addition method
-        //Stopwatch stringAdditionStopwatch = JsModel.SaveTestDataWithString(ui, testStructureSet, _loopSize, jsDataStringPath);
-        //ui.SkipLines(1);
-        //ui.Write($"  {_loopSize} iterations of structure data saved using string addition ( += ): {stringAdditionStopwatch.Elapsed.TotalSeconds}");
-        //ui.SkipLines(2);
+        // add some space
+        ui.SkipLines(2);
 
 
-        //// test saving the structure data using the string concatenation method (string builder)
-        //Stopwatch stringBuilderStopwatch = JsModel.SaveTestDataWithStringBuilder(ui, testStructureSet, _loopSize, jsDataStringBuilderPath);
-        //ui.SkipLines(1);
-        //ui.Write($"  {_loopSize} iterations of structure data saved using string builder (concatenation): {stringBuilderStopwatch.Elapsed.TotalSeconds}");
-        //ui.SkipLines(2);
+        // test saving the structure data using the string addition method
+        Stopwatch stringAdditionStopwatch = JsModel.SaveTestDataWithString(ui, testStructureSet, _loopSize, jsDataStringPath);
+        ui.SkipLines(1);
+        ui.Write($"  {_loopSize} iterations of structure data saved using string addition ( += ): {stringAdditionStopwatch.Elapsed.TotalSeconds} total seconds");
+        ui.SkipLines(2);
 
 
-        //// create and throw an exception as a test
-        ////Exception exception = new Exception();
-        ////throw exception;
+        // test saving the structure data using the string concatenation method (string builder)
+        Stopwatch stringBuilderStopwatch = JsModel.SaveTestDataWithStringBuilder(ui, testStructureSet, _loopSize, jsDataStringBuilderPath);
+        ui.SkipLines(1);
+        ui.Write($"  {_loopSize} iterations of structure data saved using string builder (concatenation): {stringBuilderStopwatch.Elapsed.TotalSeconds} total seconds");
+        ui.SkipLines(2);
 
 
-        //// now let's test why the string addition takes longer...
-        //// path to log the progress of string addition for each iteration
-        //string jsDataStringLogPath = _projectDir + $@"\ExampleFileData\Logs\log.progresslog.{_loopSize}.txt";
-
-        //// test saving the structure data using the string addition method but while logging the progress
-        //Stopwatch stringAdditionStopwatchWithLog = JsModel.SaveTestDataWithString(ui, testStructureSet, _loopSize, jsDataStringPath, jsDataStringLogPath, true);
-        //ui.SkipLines(1);
-        //ui.Write($"  {_loopSize} iterations of structure data saved using string addition (with progress log): {stringAdditionStopwatchWithLog.Elapsed.TotalSeconds}\n  - Check the progress log for more information:\n  {jsDataStringLogPath.Replace(_projectDir, "")}");
+        ////create and throw an exception as a test
+        //Exception exception = new Exception();
+        //throw exception;
 
 
-        //// recap
-        //// add space
-        //ui.SkipLines(3);
-        //ui.Write($"  Summary:\n\n  {_loopSize} iterations took \n\t{stringAdditionStopwatch.Elapsed.TotalSeconds} total seconds using string addition ( += )\n\t{stringBuilderStopwatch.Elapsed.TotalSeconds} total seconds for string builder (concatenation)\n\t{stringAdditionStopwatchWithLog.Elapsed.TotalSeconds} total seconds for string addition ( += ) with a progress log");
-        //// add space
-        //ui.SkipLines(3);
+        // now let's test why the string addition takes longer...
+        // path to log the progress of string addition for each iteration
+        string jsDataStringLogPath = _projectDir + $@"\ExampleFileData\Logs\log.progresslog.{_loopSize}.txt";
+
+        // test saving the structure data using the string addition method but while logging the progress
+        Stopwatch stringAdditionStopwatchWithLog = JsModel.SaveTestDataWithString(ui, testStructureSet, _loopSize, jsDataStringPath, jsDataStringLogPath, true);
+        ui.SkipLines(1);
+        ui.Write($"  {_loopSize} iterations of structure data saved using string addition (with progress log): {stringAdditionStopwatchWithLog.Elapsed.TotalSeconds} total seconds\n  - Check the progress log for more information:\n  {jsDataStringLogPath.Replace(_projectDir, "")}");
+
+
+        // recap
+        // add space
+        ui.SkipLines(3);
+        ui.Write($"  Summary:\n\n  {_loopSize} iterations took \n\t{stringAdditionStopwatch.Elapsed.TotalSeconds} total seconds using string addition ( += )\n\t{stringBuilderStopwatch.Elapsed.TotalSeconds} total seconds for string builder (concatenation)\n\t{stringAdditionStopwatchWithLog.Elapsed.TotalSeconds} total seconds for string addition ( += ) with a progress log");
+        // add space
+        ui.SkipLines(3);
 
 
 
@@ -232,29 +234,29 @@ namespace IO_Examples
       }
       catch (Exception ex)
       {
+        _logException = true;
+
         ui.Write(ex.Message);
         ui.Write(ex.StackTrace);
+
+        swTotalLogTime.Stop();
+        LoggerModel.LogInformation(string.Format("applicationsuccess=false;{0};totalseconds={1};\n--begin exception detail--\nMessage:\n{2}\nInnerException:\n{3}\n\nStackTrace:\n{4}\n--end exception detail--\n\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds, ex.Message, ex.InnerException, ex.StackTrace), _logFilePath);
       }
 
       #region TXT -> .txt
 
-      //// .txt -> Text File - useful for logging, etc. and you don't care about columns, etc. 
-      //// parsing these requires the knowledge of how the file is structured/formatted when written
+      // .txt -> Text File - useful for logging, etc. and you don't care about columns, etc. 
+      // parsing these requires the knowledge of how the file is structured/formatted when written
 
-      //// if the timer is still running, there was an error that occurred...
-      //if (swTotalLogTime.IsRunning == true)
-      //{
-      //  swTotalLogTime.Stop();
-      //  LoggerModel.LogInformation(string.Format("application success = false;{0};totalseconds={1};\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds), _logFilePath);
-      //}
-      //else
-      //{
-      //  LoggerModel.LogInformation(string.Format("application success = true;{0};totalseconds={1};\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds), _logFilePath);
-      //}
+      // if the timer is still running, there was an error that occurred...
+      if (_logException == false)
+      {
+        LoggerModel.LogInformation(string.Format("applicationsuccess=true;{0};totalseconds={1};\n\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds), _logFilePath);
+      }
 
       #endregion
 
-      ui.Write("Done. Press any key to exit...");
+      ui.Write("\n\n  Done. Press any key to exit...");
       Console.ReadKey();
     }
 

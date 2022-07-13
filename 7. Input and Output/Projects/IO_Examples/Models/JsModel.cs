@@ -48,7 +48,7 @@ namespace IO_Examples.Models
       // stop the clock
       sw.Stop();
       // add the elapsed seconds and minutes to the js data object
-      jsData.Append($",\"Elapsed\":{{\"Seconds\" : {sw.Elapsed.TotalSeconds},\"Milliseconds\":{sw.Elapsed.Milliseconds}}},\"NumberOfLoops\": {loopSize}" +
+      jsData.Append($",\"Elapsed\":{{\"Seconds\" : {sw.Elapsed.TotalSeconds},\"Milliseconds\":{sw.Elapsed.TotalMilliseconds}}},\"NumberOfLoops\": {loopSize}" +
         $"}}"); // have to close the js object
       // write the data to file
       File.WriteAllText(pathToWriteTo, jsData.ToString()); // have to call the ToString() method
@@ -128,7 +128,7 @@ namespace IO_Examples.Models
       // stop the clock
       sw.Stop();
       // add the elapsed seconds and minutes to the js data object
-      jsData += $",\"Elapsed\":{{\"Seconds\" : {sw.Elapsed.TotalSeconds},\"Milliseconds\":{sw.Elapsed.Milliseconds}}}," + $"\"NumberOfLoops\": {loopSize}" +
+      jsData += $",\"Elapsed\":{{\"Seconds\" : {sw.Elapsed.TotalSeconds},\"Milliseconds\":{sw.Elapsed.TotalMilliseconds}}},\"NumberOfLoops\": {loopSize}" +
         $"}}"; // have to close the js object
       // write the data to file
       File.WriteAllText(pathToWriteTo, jsData);

@@ -18,7 +18,7 @@ namespace IO_Examples.Models
 
       foreach (var line in File.ReadAllLines(csvBeamDataPath))
       {
-        var data = line.Split(',');
+        string[] data = line.Split(',');
         if (data[0] != "BeamType") // ignore the header row
         {
           BeamType beamType;
@@ -58,7 +58,7 @@ namespace IO_Examples.Models
           }
           List<int> validDoseRates = new List<int> { 100,200,300,400,600};
           bool doseRateIsValidInteger = Int32.TryParse(data[5], out int doseRate);
-          if (validDoseRates.Contains(doseRate) == false)
+          if (validDoseRates.Contains(doseRate) == false || doseRateIsValidInteger == false)
           {
             doseRate = 600;
           }
@@ -77,8 +77,8 @@ namespace IO_Examples.Models
             y1 = 10;
             y2 = 10;
           }
-          VRect<double> jawPositions = new VRect<double> { X1 = x1, X2 = x2, Y1 = y1, Y2 = y1 };
-          // would probable want to validate these others as well in a real application
+          VRect<double> jawPositions = new VRect<double> { X1 = x1, X2 = x2, Y1 = y1, Y2 = y2 };
+          // would probably want to validate these others as well in a real application
           VVector iso = new VVector { x = double.Parse(data[18]), y = double.Parse(data[19]), z = double.Parse(data[20])};
 
 
@@ -91,7 +91,7 @@ namespace IO_Examples.Models
             MachineParameters = new MachineParametersModel(data[3], data[4], doseRate, data[6], data[7]),
             LeafPositions = null, // should result in default leaf positions when null
             JawPositions = jawPositions,
-            // would probable want to validate these others as well in a real application
+            // would probably want to validate these others as well in a real application
             CollimatorAngle = double.Parse(data[13]), 
             GantryAngle = double.Parse(data[14]),
             GantryStop = double.Parse(data[15]),

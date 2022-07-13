@@ -1,5 +1,4 @@
-﻿
-// string addition time elapsed p tag
+﻿// string addition time elapsed p tag
 let stringAdditionTimeElapsed = document.getElementById("string-test-time-elapsed");
 // string addition div
 let stringAdditionDiv = document.getElementById("string-test-div");
@@ -12,7 +11,7 @@ let stringBuilderDiv = document.getElementById("stringbuilder-test-div");
 
 
 // string addition data
-stringAdditionTimeElapsed.innerHTML = "Time Elapsed for " + stringAdditionData.NumberOfLoops + "Loops: " + stringAdditionData.Elapsed.Seconds + "Seconds (" + stringBuilderData.Elapsed.Minutes + " Minutes)";
+stringAdditionTimeElapsed.innerHTML = "Time Elapsed for " + stringAdditionData.NumberOfLoops + " Loop(s): " + stringAdditionData.Elapsed.Seconds + " s (" + stringAdditionData.Elapsed.Milliseconds + " ms)";
 stringAdditionData.StructureData.forEach((s) => {
     //console.log(s.Id)
     stringAdditionDiv.innerHTML += "<ul>";
@@ -23,7 +22,7 @@ stringAdditionData.StructureData.forEach((s) => {
 });
 
 // string builder data
-stringBuilderTimeElapsed.innerHTML = "Time Elapsed for " + stringBuilderData.NumberOfLoops + "Loops: " + stringBuilderData.Elapsed.Seconds + "Seconds (" + stringBuilderData.Elapsed.Minutes + " Minutes)";
+stringBuilderTimeElapsed.innerHTML = "Time Elapsed for " + stringBuilderData.NumberOfLoops + " Loop(s): " + stringBuilderData.Elapsed.Seconds + " s (" + stringBuilderData.Elapsed.Milliseconds + " ms)";
 
 
 stringBuilderData.StructureData.forEach((s) => {
