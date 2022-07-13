@@ -56,7 +56,7 @@ namespace IO_Examples.Models
               gantryDirection = GantryDirection.None;
               break;
           }
-          List<int> validDoseRates = new List<int> { 100,200,300,400,600};
+          List<int> validDoseRates = new List<int> { 100,200,300,400,600 };
           bool doseRateIsValidInteger = Int32.TryParse(data[5], out int doseRate);
           if (validDoseRates.Contains(doseRate) == false || doseRateIsValidInteger == false)
           {
@@ -67,6 +67,7 @@ namespace IO_Examples.Models
           bool x2IsValid = double.TryParse(data[10], out double x2);
           bool y1IsValid = double.TryParse(data[11], out double y1);
           bool y2IsValid = double.TryParse(data[12], out double y2);
+          //x1 = x1IsValid ? x1 : 10;
           if (x1IsValid == false || x2IsValid == false)
           {
             x1 = 10;

@@ -16,8 +16,7 @@ namespace IO_Examples.Models
       using (StreamReader r = new StreamReader(jsonFilePath))
       {
         string json = r.ReadToEnd();
-        List<Patient> patients = JsonConvert.DeserializeObject<List<Patient>>(json);
-        return patients;
+        return JsonConvert.DeserializeObject<List<Patient>>(json);
       }
     }
 
@@ -26,8 +25,7 @@ namespace IO_Examples.Models
       using (StreamReader r = new StreamReader(jsonFilePath))
       {
         string json = r.ReadToEnd();
-        List<GenericBeam> genericBeams = JsonConvert.DeserializeObject<List<GenericBeam>>(json);
-        return genericBeams;
+        return JsonConvert.DeserializeObject<List<GenericBeam>>(json);
       }
     }
   }

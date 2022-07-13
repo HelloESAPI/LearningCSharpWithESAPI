@@ -115,6 +115,7 @@ namespace IO_Examples
         sw.Stop();
 
         ui.Write($"  {beamsFromCsv.Count} beams collected from .csv in {sw.ElapsedMilliseconds} ms");
+        //ui.Write(string.Format("  {0} beams collected from .csv in {1} ms", beamsFromCsv.Count, sw.ElapsedMilliseconds));
 
 
 
@@ -240,7 +241,7 @@ namespace IO_Examples
         ui.Write(ex.StackTrace);
 
         swTotalLogTime.Stop();
-        LoggerModel.LogInformation(string.Format("applicationsuccess=false;{0};totalseconds={1};\n--begin exception detail--\nMessage:\n{2}\nInnerException:\n{3}\n\nStackTrace:\n{4}\n--end exception detail--\n\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds, ex.Message, ex.InnerException, ex.StackTrace), _logFilePath);
+        LoggerModel.LogInformation(string.Format("applicationsuccess=false;{0};totalseconds={1};\n--begin exception detail--\nMessage:\n{2}\nInnerException:\n{3}\n\nTargetSite:\n{4}\n--end exception detail--\n\n", DateTime.Now.ToString(), swTotalLogTime.Elapsed.TotalSeconds, ex.Message, ex.InnerException, ex.TargetSite), _logFilePath);
       }
 
       #region TXT -> .txt
