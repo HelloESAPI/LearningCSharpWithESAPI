@@ -57,3 +57,31 @@
 #### [Part 5 | Creating a Plugin Runner to Launch our Executable From Eclipse](https://youtu.be/a9f5ePuPLdI)
 - Further discuss launching stand-alone executables within the Eclipse environment
 - Create a plugin runner (single file plugin) that can be run from the normal Eclipse scripts location to launch the stand-alone executable
+
+### 7. IO | Reading and Writing Data From/To Files with CSharp
+#### [Part 1 | Reading Data from CSV Files](https://youtu.be/92o2i-BbI1g)
+- Ever want to load data for your application from a file or save data by writing it to a file? 
+- Cover the basics of reading data from CSV files
+- Review an example by creating generic beam objects from the .csv file 
+	- Example solution to loading templated beams from external .csv file
+	- Cover some examples of validating the data collected from the file
+
+#### [Part 2 | Reading Data from JSON Files](https://youtu.be/IDciyvKT2Bg)
+- General overview of what JSON files are
+- Review an example by creating generic patient and beam objects from the .json file
+- Compare the difference in efficiency between reading the beam data from .csv vs .json
+
+#### [Part 3a | String Addition vs String Concatenation AND Writing Data to JS Files](https://youtu.be/RZO1S98exmw)
+- Ever wonder what the difference is between string addition (+=) and string concatenation (using a StringBuilder)?
+	- Build and write data of various lengths to JavaScript (.js) files via both string addition and concatenation
+	- Investigate the efficiency of each strategy and settle once and for all which one is faster
+
+#### [Part 3b | Loading JS Data Files into Static HTML Pages](https://youtu.be/pSXGfOnXC7o)
+- Need or want to display your collected data? 
+	- Cover the basics of loading your JavaScript file (.js) data into an HTML document
+	- Review an example HTML page and javascript code that displays the data from 3a in a browser 
+	- Languages Covered: C#, HTML, and JavaScript
+
+#### [Part 4 | Logging Script Data with Text Files](https://youtu.be/TZsdSCT6HE0)
+- Ever want to track when your scripts are used or when users are having issues?
+	- Cover a basic example of using text files to log information from your script.
