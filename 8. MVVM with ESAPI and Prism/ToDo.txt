@@ -1,0 +1,13 @@
+
+	MVVM with Prism and ESAPI
+
+
+	- Why MVVM is so difficult...
+		- need a lot of extra code to monitor and update changes in a view
+		- all the views are separated....these hard to connect and update
+		- button events are difficult now that we're not using the "code behind"
+
+	- Prism can help...
+		- the BindableBase class helps with monitoring changes and updating the view
+		- DelegateCommands help by making button events much more straight forward
+		- PubSubEvents make updating different views much simpler
