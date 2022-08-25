@@ -86,7 +86,7 @@
 - Ever want to track when your scripts are used or when users are having issues?
 	- Cover a basic example of using text files to log information from your script.
 
-### 8. [MVVM with Prism]()
+### 8. [MVVM with Prism](https://youtu.be/Ng-hkI-1zpg)
 - Cover the basics of using Prism to monitor and update Views, ViewModels, etc. 
 	- BindableBase vs INotifyPropertyChanged
 	- DelegateCommands for wiring up buttons -> instead of using click events/event handlers in the "code behind"
