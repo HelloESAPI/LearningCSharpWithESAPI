@@ -2,6 +2,11 @@
 
 ## Projects from video tutorials -- [Hello ESAPI](https://www.youtube.com/channel/UCaIibdaWUN3D_0MCmuCmO-w)
 
+### 0. Getting Started in 2023
+#### [Intro to ESAPI](https://youtu.be/uer1Zq-KJQQ)
+#### [Visual Studio and an Example ESAPI Script](https://youtu.be/yE58o7ueDw8)
+
+
 ### 1. Intro To CSharp Using ESAPI
 
 - [Value Types](https://www.youtube.com/watch?v=S6XrRCY2A4E&t=13s)
@@ -91,3 +96,19 @@
 	- BindableBase vs INotifyPropertyChanged
 	- DelegateCommands for wiring up buttons -> instead of using click events/event handlers in the "code behind"
 	- PubSubEvents for publishing/subscribing to events that occur in other views
+
+### 9. MVVM without Prism
+#### [Part 1 | Intro](https://youtu.be/9dygjxCWde4)
+- A preview of the updated project and an intro to the series and other resources for INotifyPropertyChanged, EventHandlers/Actions, and Commands
+
+#### [Part 2 | INotifyPropertyChanged and Substituting BindableBasero](https://youtu.be/z2WHcGxYgug)
+- Start our MVVM Base project
+- Cover an intro to INotifyPropertyChanged with an example of how/why we use it
+- Substitute our use of BindableBase with our own implentation of an observable object and view model base
+
+#### [Part 3 | EventHandlers and Actions](https://youtu.be/SzsF3aI4crQ)
+- Swap out PubSubEvents for custom EventHandlers and/or Actions. 
+- Pass along objects with events in the form of both EventHandlers and Actions
+
+#### [Part 4 | ICommand](https://youtu.be/w13nxK_ClgM)
+- Substute Prism's Delegate Commands for a base command that implements the ICommand interface

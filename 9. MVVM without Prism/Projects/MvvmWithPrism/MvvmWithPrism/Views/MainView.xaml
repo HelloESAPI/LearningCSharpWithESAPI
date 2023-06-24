@@ -1,0 +1,55 @@
+﻿<Window x:Class="MvvmWithoutPrism.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MvvmWithoutPrism.Views"
+        mc:Ignorable="d" Background="#fff" FontSize="18" Foreground="Black" FontFamily="Calibri" FontWeight="UltraLight"
+        Title="MVVM Without Prism" Height="auto" Width="auto">
+  <Border Margin="20" BorderBrush="LightSlateGray" BorderThickness="2" CornerRadius="20">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <TextBlock Grid.Row="0" Text="{Binding Title}" HorizontalAlignment="Stretch" TextAlignment="Center" Background="LightSlateGray" VerticalAlignment="Center" Margin="20" FontSize="24" FontWeight="SemiBold" Padding="20"/>
+
+      <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <TextBlock Text="Select StructureSet:" Width="200" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding AvailableStructureSetIds}" SelectedItem="{Binding SelectedStructureSetId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="20 0 0 0" VerticalAlignment="Center"/>
+      </StackPanel>
+
+      <StackPanel Grid.Row="2"
+                  HorizontalAlignment="Center"
+                  Margin="0 20">
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Selected StructureSet Id:"
+                     Width="200" />
+          <TextBlock Text="{Binding StructureSet.Id}"
+                     Width="150"
+                     Margin="20 0 0 0" />
+        </StackPanel>
+        <local:StructureListView DataContext="{Binding StructureListViewModel}" />
+      </StackPanel>
+
+      <Rectangle Grid.Row="3" Width="800" Height="1" Fill="LightGray" Margin="0 20"/>
+
+      <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+        <TextBlock Text="Select Structure:" Width="200" VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding Structures}" SelectedItem="{Binding SelectedStructure}" Width="150" Margin="10 0 0 0" VerticalAlignment="Center" DisplayMemberPath="Id"/>
+      </StackPanel>
+
+      <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
+
+        <local:StructureDetailsView DataContext="{Binding StructureDetailsViewModel}"/>
+
+      </StackPanel>
+
+    </Grid>
+  </Border>
+</Window>

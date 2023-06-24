@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  
+  <sys:String x:Key="SortUp">F1 M320,512z M0,0z M182.6,470.6C170.1,483.1,149.8,483.1,137.3,470.6L9.30000000000001,342.6C0.100000000000012,333.4 -2.59999999999999,319.7 2.40000000000001,307.7 7.40000000000001,295.7 19,287.9 32,287.9L288,287.9C300.9,287.9 312.6,295.7 317.6,307.7 322.6,319.7 319.8,333.4 310.7,342.6L182.7,470.6z</sys:String>
+
+  <!--Converted from svg to xaml-->
+  <!--<DrawingImage x:Key="SortUp">
+    <DrawingImage.Drawing>
+      <DrawingGroup ClipGeometry="M0,0 V512 H320 V0 H0 Z">
+        <DrawingGroup.Transform>
+          <TranslateTransform X="0.077777698636054993"
+                              Y="0" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000"
+                         Geometry="F1 M320,512z M0,0z M182.6,41.4C170.1,28.9,149.8,28.9,137.3,41.4L9.30000000000001,169.4C0.100000000000012,178.6 -2.59999999999999,192.3 2.40000000000001,204.3 7.40000000000001,216.3 19,224.1 32,224.1L288,224.1C300.9,224.1 312.6,216.3 317.6,204.3 322.6,192.3 319.8,178.6 310.7,169.4L182.7,41.4z" />
+      </DrawingGroup>
+    </DrawingImage.Drawing>
+  </DrawingImage>-->
+</ResourceDictionary>

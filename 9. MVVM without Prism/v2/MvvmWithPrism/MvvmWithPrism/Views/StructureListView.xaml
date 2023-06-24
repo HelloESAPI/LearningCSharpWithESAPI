@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="MvvmWithPrism.Views.StructureListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MvvmWithPrism.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+  <UserControl.Resources>
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+  </UserControl.Resources>
+  <Grid Margin="0">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Border CornerRadius="2"
+            BorderThickness="0"
+            Background="{StaticResource PrimBrush1}">
+      <TextBlock Text="Structures"
+                 HorizontalAlignment="Stretch"
+                 TextAlignment="Center"
+                 FontWeight="Thin"
+                 FontSize="32"
+                 Foreground="{StaticResource SecBrush1}"
+                 Padding="10" />
+    </Border>
+    <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}"
+              RowStyle="{DynamicResource DataGridRowStyle1}"
+              Visibility="{Binding StructureSetIsSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+              IsReadOnly="True"
+              SnapsToDevicePixels="True"
+              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+              Grid.Row="1"
+              Margin="0 20 0 0"
+              ItemsSource="{Binding Structures}"
+              AutoGenerateColumns="True"
+              HorizontalContentAlignment="Stretch"
+              CanUserAddRows="False"
+              Background="Transparent"
+              Padding="10"
+              BorderThickness="1"
+              BorderBrush="{DynamicResource PrimBrush1}"
+              HorizontalGridLinesBrush="Transparent"
+              MaxHeight="300" />
+  </Grid>
+</UserControl>

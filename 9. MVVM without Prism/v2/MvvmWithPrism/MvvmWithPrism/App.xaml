@@ -1,0 +1,34 @@
+﻿<Application x:Class="MvvmWithPrism.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MvvmWithPrism"
+             Startup="Application_Startup">
+  <Application.Resources>
+
+
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Styles/DataGridResourceDictionary.xaml" />
+        <ResourceDictionary Source="Assets/SortUp.xaml" />
+        <ResourceDictionary Source="Assets/SortDown.xaml" />
+        <ResourceDictionary>
+          <Color x:Key="PrimColor1">#1d4161</Color>
+          <Color x:Key="PrimColor2">#384f63</Color>
+          <Color x:Key="PrimColor3">#ffc859</Color>
+          <Color x:Key="SecColor1">#ebeff5</Color>
+          <Color x:Key="SecColor2">#f5e9df</Color>
+          <SolidColorBrush x:Key="PrimBrush1"
+                           Color="{StaticResource PrimColor1}" />
+          <SolidColorBrush x:Key="PrimBrush2"
+                           Color="{StaticResource PrimColor2}" />
+          <SolidColorBrush x:Key="PrimBrush3"
+                           Color="{StaticResource PrimColor3}" />
+          <SolidColorBrush x:Key="SecBrush1"
+                           Color="{StaticResource SecColor1}" />
+          <SolidColorBrush x:Key="SecBrush2"
+                           Color="{StaticResource SecColor2}" />
+        </ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

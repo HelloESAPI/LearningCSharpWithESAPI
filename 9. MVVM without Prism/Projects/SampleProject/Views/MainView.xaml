@@ -1,0 +1,59 @@
+﻿<Window x:Class="SampleProject.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SampleProject.Views"
+        mc:Ignorable="d"
+        FontFamily="Calibri"
+        FontWeight="UltraLight"
+        FontSize="24"
+        WindowStartupLocation="CenterScreen"
+        Title="Rectangle Calculator"
+        Height="450"
+        Width="800">
+  <StackPanel HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+    <StackPanel Orientation="Horizontal"
+                Margin="0 10 0 0">
+      <TextBlock Text="Length:"
+                 Width="100" />
+      <TextBox Text="{Binding Rectangle.Length, UpdateSourceTrigger=PropertyChanged}"
+               Padding="2"
+               Width="75"
+               Margin="10 0 0 0"
+               HorizontalContentAlignment="center" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal"
+                Margin="0 10 0 0">
+      <TextBlock Text="Width:"
+                 Width="100" />
+      <TextBox Text="{Binding Rectangle.Width, UpdateSourceTrigger=PropertyChanged}"
+               Padding="2"
+               Width="75"
+               Margin="10 0 0 0"
+               HorizontalContentAlignment="center" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal"
+                Margin="0 10 0 0">
+      <TextBlock Text="Perimeter:"
+                 Width="100" />
+      <TextBlock Text="{Binding Rectangle.Perimeter}"
+                 Padding="2"
+                 Width="75"
+                 Margin="10 0 0 0" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal"
+                Margin="0 10 0 0">
+      <TextBlock Text="Area:"
+                 Width="100" />
+      <TextBlock Text="{Binding Rectangle.Area}"
+                 Padding="2"
+                 Width="75" 
+                 Margin="10 0 0 0"/>
+    </StackPanel>
+  </StackPanel>
+</Window>
